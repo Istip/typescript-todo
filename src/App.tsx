@@ -6,18 +6,22 @@ import TodoList from './components/TodoList';
 const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  console.log();
   const addNewTodo = (text: string) => {
-    const newTodo = { id: Math.random.toString(), text };
+    const newTodo = { id: new Date().toISOString(), text };
     setTodos((prevTodos) => [newTodo, ...prevTodos]);
   };
 
+  const deleteTodo = (id: string) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.id !== id);
+    });
+  };
+
   return (
-    <div className="App">
-      <h1>TS App</h1>
+    <>
       <NewTodo addNewTodo={addNewTodo} />
-      <TodoList todos={todos} />
-    </div>
+      <TodoList todos={todos} deleteTodo={deleteTodo} />
+    </>
   );
 };
 
