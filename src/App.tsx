@@ -6,6 +6,7 @@ import TodoList from './components/TodoList';
 const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
+  console.log();
   const addNewTodo = (text: string) => {
     const newTodo = { id: new Date().toISOString(), text };
     setTodos((prevTodos) => [newTodo, ...prevTodos]);
